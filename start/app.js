@@ -15,7 +15,9 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
-  '@adonisjs/lucid/providers/LucidProvider'
+  '@adonisjs/lucid/providers/LucidProvider',
+  'adonis-4-mongoose/provider/Mongoose',
+  '@adonisjs/auth/providers/AuthProvider',
 ]
 
 /*
@@ -43,7 +45,9 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {}
+const aliases = {
+  Mongoose: 'Adonis/Addons/AdonisMongoose'
+}
 
 /*
 |--------------------------------------------------------------------------
