@@ -20,28 +20,28 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-Route.post('register', 'UserController.store')
-Route.post('login', 'Auth/AuthController.login')
+Route.post('api/register', 'UserController.store')
+Route.post('api/login', 'Auth/AuthController.login')
 
 Route.group(() => { 
-  Route.get('perfil', 'UserController.show'),
-  Route.put('user', 'UserController.update'),
-  Route.delete('user', 'UserController.destroy')
+  Route.get('/api/profile', 'UserController.show'),
+  Route.put('/api/user', 'UserController.update'),
+  Route.delete('/api/user', 'UserController.destroy')
  }).middleware(['auth'])
 
  //SENSORS
  Route.group(() => { 
-  Route.post('sensor', 'SensorController.store')
-  Route.get('sensor', 'SensorController.showMySensors')
-  Route.get('monitoring/:locationParam', 'SensorController.showMySensorsByLocation')
-  Route.put('sensor/:id', 'SensorController.update')
-  Route.delete('sensor/:id', 'SensorController.destroy')
+  Route.post('/api/sensor', 'SensorController.store')
+  Route.get('/api/sensor', 'SensorController.showMySensors')
+  Route.get('/api/monitoring/:locationParam', 'SensorController.showMySensorsByLocation')
+  Route.put('/api/sensor/:id', 'SensorController.update')
+  Route.delete('/api/sensor/:id', 'SensorController.destroy')
 }).middleware(['auth'])
 
 //LOCATIONS
 Route.group(() => { 
-  Route.post('location', 'LocationController.store')
-  Route.get('location', 'LocationController.showMyLocations')
-  Route.put('location/:name', 'LocationController.update')
-  Route.delete('location/:name', 'LocationController.destroy')
+  Route.post('/api/location', 'LocationController.store')
+  Route.get('/api/location', 'LocationController.showMyLocations')
+  Route.put('/api/location/:name', 'LocationController.update')
+  Route.delete('/api/location/:name', 'LocationController.destroy')
 }).middleware(['auth'])
