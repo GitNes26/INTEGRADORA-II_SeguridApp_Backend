@@ -16,7 +16,7 @@ class UserController {
     async show({response, auth}) {
         const session = await auth.getUser()
         const user = await User.findBy('id',session.id)
-        return response.status(200).json({user:user})
+        return response.status(200).json(user)
     }
 
     async update({request, response, auth}){
@@ -36,7 +36,7 @@ class UserController {
 
         await user.save()
         
-        return response.status(200).json({user:user})
+        return response.status(200).json(user)
     }
 
     async destroy({auth, response}){

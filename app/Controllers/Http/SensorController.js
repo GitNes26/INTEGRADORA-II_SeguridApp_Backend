@@ -17,7 +17,7 @@ class SensorController {
         }
         const sensor = new Sensor(newSensor)
         await sensor.save()
-        return response.status(200).json({'sensor':sensor})
+        return response.status(200).json(sensor)
     }
 
     async showMySensors({ response, auth }) {
@@ -28,7 +28,7 @@ class SensorController {
 
         // if (error) return response.status(500).json({message:'hubo un error:',error})
         if (mySensors == 0) return response.status(404).json({message:'Producto no encontrado'})
-        return response.status(200).json({'mySensors':mySensors})
+        return response.status(200).json(mySensors)
     }
 
     async showMySensorsByLocation({ response, auth, params:{locationParam}}) {

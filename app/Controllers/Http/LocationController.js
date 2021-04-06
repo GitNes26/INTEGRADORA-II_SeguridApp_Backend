@@ -13,14 +13,14 @@ class LocationController {
         }
         const location = new Location(newLocation)
         await location.save()
-        return response.status(200).json({'location':location})
+        return response.status(200).json(location)
     }
 
     async showMyLocations({ response, auth }) {
         const user = await auth.getUser()
         const myLocations = await Location.find({'user_id':user.id})
 
-        return response.status(200).json({'myLocations':myLocations})
+        return response.status(200).json(myLocations)
     }
 
     async update({request, response, params:{name}, auth}) {
