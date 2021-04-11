@@ -15,7 +15,7 @@ const mongoose = require('mongoose')
 const uri = 'mongodb://127.0.0.1:27017/seguridapp'
 
 // mongoose.openUri(uri)
-mongoose.connect(uri,{ useMongoClient: true })
+mongoose.connect(uri,{ useMongoClient: false })
 mongoose.connection.on('open', _ => {
   console.log('conectado a MongoDB en:',uri)
 })

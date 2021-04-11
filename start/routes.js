@@ -42,6 +42,6 @@ Route.group(() => {
 Route.group(() => { 
   Route.post('/api/location', 'LocationController.store')
   Route.get('/api/location', 'LocationController.showMyLocations')
-  Route.put('/api/location/:name', 'LocationController.update')
+  Route.put('/api/location/:_id', 'LocationController.update')
   Route.delete('/api/location/:name', 'LocationController.destroy')
 }).middleware(['auth'])

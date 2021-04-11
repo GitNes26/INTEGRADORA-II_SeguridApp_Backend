@@ -13,7 +13,7 @@ autoIncrement.initialize(connection);
 let locationSchema = mongoose.Schema({
   // reg: { type: Number, default: '', requiered: true, unique: true },
   // id: { type: String, default: '', requiered: true, unique: true, uppercase: true },
-  name: { type: String, default: '', requiered: true, unique: true, lowercase: true },
+  name: { type: String, default: '', requiered: true, lowercase: true },
   user_id: { type: Number, default: '', requiered: true }
 },{
   timestamps: true

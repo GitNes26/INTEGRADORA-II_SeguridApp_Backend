@@ -48,7 +48,8 @@ class SensorController {
         // const newId = request.input('id')
         // const newName = request.input('name')
         const newLocation = request.input('location')
-        await Sensor.findOneAndUpdate({'id':id},{'location':newLocation})
+        const newDescription = request.input('description')
+        await Sensor.findOneAndUpdate({'user_id':user.id, 'id':id},{'location':newLocation, 'description':newDescription})
         // await Sensor.updateOne({'id':id, 'user_id':user.id},{$set:{'id':newId,'name':newName, 'location_id':newLocation}})
        
         return response.status(200).json({message:'Sensor modificado'}) 

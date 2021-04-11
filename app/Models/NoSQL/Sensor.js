@@ -12,9 +12,9 @@ autoIncrement.initialize(connection);
  
 let sensorSchema = mongoose.Schema({
   // reg: { type: Number, default: '', requiered: true, unique: true },
-  id: { type: String, default: '', requiered: true, unique: true, uppercase: true },
-  name: { type: String, default: '', requiered: true, unique: true, lowercase: true },
-  pin: { type: Number, default: '', requiered: true, unique: true },
+  id: { type: String, default: '', requiered: true, uppercase: true },
+  name: { type: String, default: '', requiered: true,lowercase: true },
+  pin: { type: Number, default: '', requiered: true},
   location: { type: String, default: '', requiered: true, lowercase: true },
   user_id: { type: Number, default: '', requiered: true },
   description: { type: String, default: '', requiered: true }

@@ -23,11 +23,11 @@ class LocationController {
         return response.status(200).json(myLocations)
     }
 
-    async update({request, response, params:{name}, auth}) {
+    async update({request, response, params:{_id}, auth}) {
         const user = await auth.getUser()
 
         const newName = request.input('name')
-        await Location.findOneAndUpdate({'user_id':user.id, 'name':name},{'name':newName})
+        await Location.findOneAndUpdate({'user_id':user.id, '_id':_id},{'name':newName})
         
         return response.status(200).json({message:'Sensor modificado'})
     }
@@ -36,7 +36,7 @@ class LocationController {
         const user = await auth.getUser()
 
         const location = await Location.findOne({'name':name, 'user_id':user.id}).lean()
-        await Location.deleteOne({'name':location.name})
+        await Location.deleteOne({'_id':location._id})
 
         return response.status(200).json({message:'Sesnor eliminado'})
     }
