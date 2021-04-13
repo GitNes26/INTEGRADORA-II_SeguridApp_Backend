@@ -47,15 +47,16 @@ class SensorController {
 
         // const newId = request.input('id')
         // const newName = request.input('name')
+        const newPin = request.input('pin')
         const newLocation = request.input('location')
         const newDescription = request.input('description')
-        const sensor = await Sensor.findOneAndUpdate({'user_id':user.id, 'id':id},{'location':newLocation, 'description':newDescription})
+        const sensor = await Sensor.findOneAndUpdate({'user_id':user.id, 'id':id},{'pin':newPin, 'location':newLocation, 'description':newDescription})
         // await Sensor.updateOne({'id':id, 'user_id':user.id},{$set:{'id':newId,'name':newName, 'location_id':newLocation}})
        
         return response.status(200).json({message:`Sensor ${sensor.name} modificado`}) 
     }
 
-    async destroy({response, auth, params:{id}}){
+    async destroy({response, auth, params:{id}}) {
         const user = await auth.getUser()
         
         const sensor = await Sensor.findOne({'user_id':user.id, 'id':id}).lean()

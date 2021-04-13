@@ -23,6 +23,8 @@ let sensorSchema = mongoose.Schema({
   timestamps: true
 })
 
+// falta hacer unique pero con user|id && user|name && user|pin
+
 sensorSchema.plugin(mongooseLeanGetters, mongooseAutoPopulate, autoIncrement.plugin,{
   model: 'Sensor',
   field: 'reg',

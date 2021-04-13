@@ -19,6 +19,8 @@ let locationSchema = mongoose.Schema({
   timestamps: true
 })
 
+// falta hacer unique pero con user|name
+
 locationSchema.plugin(mongooseLeanGetters, autoIncrement.plugin,{
   model: 'Location',
   field: 'reg',

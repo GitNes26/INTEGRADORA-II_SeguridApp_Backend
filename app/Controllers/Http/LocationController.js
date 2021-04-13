@@ -29,16 +29,16 @@ class LocationController {
         const newName = request.input('name')
         await Location.findOneAndUpdate({'user_id':user.id, '_id':_id},{'name':newName})
         
-        return response.status(200).json({message:'Sensor modificado'})
+        return response.status(200).json({message:'Locacion modificado'})
     }
 
     async destroy({response, auth, params:{_id}}) {
         const user = await auth.getUser()
 
         const location = await Location.findOne({'_id':_id, 'user_id':user.id}).lean()
-        await Location.deleteOne({'_id':location._id})
+        await Location.deleteOne({'_id':location._id}) // "sad67as567d6a"  || {_id:"sad67as567d6a"}
 
-        return response.status(200).json({message:'Sesnor eliminado'})
+        return response.status(200).json({message:'Locacion eliminado'})
     }
 }
 
