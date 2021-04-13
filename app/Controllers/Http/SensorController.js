@@ -22,9 +22,9 @@ class SensorController {
 
     async showMySensors({ response, auth }) {
         const user = await auth.getUser()
-        const mySensors = await Sensor.find({'user_id':user.id})
+        const mySensors = await Sensor.find({'user_id':user.id}).populate('location')
         // const location = await Location.findOne({'user_id':user.id}).lean()
-        // console.log(location.name)
+        // console.log(mySensors[0].location.name)
 
         // if (error) return response.status(500).json({message:'hubo un error:',error})
         if (mySensors == 0) return response.status(404).json({message:'Producto no encontrado'})
@@ -37,7 +37,7 @@ class SensorController {
         // console.log(location.name, location.id)
         if (location == 0) return response.status(404).json({message:'Localidad no encontrado'})
 
-        const sensors = await Sensor.find({'user_id':user.id, 'location':location.name})
+        const sensors = await Sensor.find({'user_id':user.id, 'location':location._id})
 
         return response.status(200).json(sensors)
     }
@@ -49,19 +49,19 @@ class SensorController {
         // const newName = request.input('name')
         const newLocation = request.input('location')
         const newDescription = request.input('description')
-        await Sensor.findOneAndUpdate({'user_id':user.id, 'id':id},{'location':newLocation, 'description':newDescription})
+        const sensor = await Sensor.findOneAndUpdate({'user_id':user.id, 'id':id},{'location':newLocation, 'description':newDescription})
         // await Sensor.updateOne({'id':id, 'user_id':user.id},{$set:{'id':newId,'name':newName, 'location_id':newLocation}})
        
-        return response.status(200).json({message:'Sensor modificado'}) 
+        return response.status(200).json({message:`Sensor ${sensor.name} modificado`}) 
     }
 
     async destroy({response, auth, params:{id}}){
         const user = await auth.getUser()
         
         const sensor = await Sensor.findOne({'user_id':user.id, 'id':id}).lean()
-        await Sensor.deleteOne({'id':sensor.id})
+        await Sensor.deleteOne({'_id':sensor._id})
 
-        return response.status(200).json({message:'Sensor eliminado'})  
+        return response.status(200).json({message:`El sensor ${sensor.name} ha sido eliminado`})  
         
     }
 }

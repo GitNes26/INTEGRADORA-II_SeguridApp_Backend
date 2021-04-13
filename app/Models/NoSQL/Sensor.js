@@ -3,6 +3,7 @@
 const mongoose = use('Mongoose')
 const autoIncrement = require('mongoose-auto-increment')
 const mongooseLeanGetters = require('mongoose-lean-getters');
+const mongooseAutoPopulate = require('mongoose-autopopulate')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 const Mixed = mongoose.Schema.Types.Mixed
@@ -13,16 +14,16 @@ autoIncrement.initialize(connection);
 let sensorSchema = mongoose.Schema({
   // reg: { type: Number, default: '', requiered: true, unique: true },
   id: { type: String, default: '', requiered: true, uppercase: true },
-  name: { type: String, default: '', requiered: true,lowercase: true },
+  name: { type: String, default: '', requiered: true },
   pin: { type: Number, default: '', requiered: true},
-  location: { type: String, default: '', requiered: true, lowercase: true },
+  location: { type: ObjectId, ref:'Location', autopopulate: true},
   user_id: { type: Number, default: '', requiered: true },
   description: { type: String, default: '', requiered: true }
 },{
   timestamps: true
 })
 
-sensorSchema.plugin(mongooseLeanGetters, autoIncrement.plugin,{
+sensorSchema.plugin(mongooseLeanGetters, mongooseAutoPopulate, autoIncrement.plugin,{
   model: 'Sensor',
   field: 'reg',
   startAt: 1,
