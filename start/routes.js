@@ -33,15 +33,4 @@ Route.group(() => {
  Route.group(() => { 
   Route.post('/api/sensor', 'SensorController.store')
   Route.get('/api/sensor', 'SensorController.showMySensors')
-  Route.get('/api/monitoring/:locationParam', 'SensorController.showMySensorsByLocation')
-  Route.put('/api/sensor/:id', 'SensorController.update')
-  Route.delete('/api/sensor/:id', 'SensorController.destroy')
-}).middleware(['auth'])
-
-//LOCATIONS
-Route.group(() => { 
-  Route.post('/api/location', 'LocationController.store')
-  Route.get('/api/location', 'LocationController.showMyLocations')
-  Route.put('/api/location/:_id', 'LocationController.update')
-  Route.delete('/api/location/:_id', 'LocationController.destroy')
 }).middleware(['auth'])
