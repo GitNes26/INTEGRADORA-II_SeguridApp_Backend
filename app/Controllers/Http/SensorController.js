@@ -35,6 +35,14 @@ class SensorController {
         if (mySensors == 0) return response.status(400).json({message:'Sensores no encontrados'})
         return response.status(200).json(mySensors)
     }
+
+    async deleteByUser({ response, auth }) {
+        const user = await auth.getUser()
+        await Sensor.deleteMany({user_id:user.id})
+
+        return response.json({message: "los sensores del usuario "+user.name+" fueron eliminados"})
+        
+    }
 }
 
 module.exports = SensorController

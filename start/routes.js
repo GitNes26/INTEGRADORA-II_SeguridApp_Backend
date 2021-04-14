@@ -33,4 +33,5 @@ Route.group(() => {
  Route.group(() => { 
   Route.post('/api/sensor', 'SensorController.store')
   Route.get('/api/sensor', 'SensorController.showMySensors')
+  Route.delete('/api/sensor', 'SensorController.deleteByUser')
 }).middleware(['auth'])
