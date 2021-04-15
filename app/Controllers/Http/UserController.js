@@ -1,11 +1,36 @@
 'use strict'
 
+const { validate } = use('Validator')
 const User = use('App/Models/User')
+const Sensor = use('App/Models/NoSQL/Sensor')
+
 
 class UserController {
-    async store({request, response}){
+    async store({request, response}) {
+
         const userData = request.all()
         const user = await User.create(userData)
+            // console.log(user);
+            
+        const newSensor = 
+            {'user_id':user.id, 'name' : 'Temp&Hum', 'description' : 'Sensor que captura la temperatura y el porcentaje de humedad.'}
+        const sensor = new Sensor(newSensor)
+        await sensor.save()
+        const newSensor2 = 
+            {'user_id':user.id, 'name' : 'Movimiento', 'description' : 'Sensor PIR, captura si hay movimiento.'}
+        const sensor2 = new Sensor(newSensor2)
+        await sensor2.save()
+        const newSensor3 = 
+            {'user_id':user.id, 'name' : 'Distancia', 'description' : 'Sensor Ultrasonico, indica la distancia.'}
+        const sensor3 = new Sensor(newSensor3)
+        await sensor3.save()
+        const newSensor4 = 
+            {'user_id':user.id, 'name' : 'LED', 'description' : 'Led RGB para indicar si hay movimiento.'}            
+        const sensor4 = new Sensor(newSensor4)
+        await sensor4.save()
+
+        const sensors = [sensor,sensor2,sensor3,sensor4]
+        // console.log(sensors);
 
         return response.created({
             status: true,
