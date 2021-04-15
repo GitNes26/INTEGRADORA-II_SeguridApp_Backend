@@ -18,6 +18,7 @@ const providers = [
   '@adonisjs/lucid/providers/LucidProvider',
   'adonis-4-mongoose/provider/Mongoose',
   '@adonisjs/auth/providers/AuthProvider',
+  '@adonisjs/websocket/providers/WsProvider'
 ]
 
 /*
