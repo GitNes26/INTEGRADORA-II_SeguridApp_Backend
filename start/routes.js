@@ -35,3 +35,12 @@ Route.group(() => {
   Route.get('/api/sensor', 'SensorController.showMySensors')
   Route.delete('/api/sensor', 'SensorController.deleteByUser')
 }).middleware(['auth'])
+
+//RESULTS
+Route.group(() => { 
+  Route.post('/api/result', 'ResultController.store')
+  Route.get('/api/result', 'ResultController.showData')
+  Route.get('/api/result/tempMax', 'ResultController.tempMax')
+  Route.get('/api/result/tempMin', 'ResultController.tempMin')
+  Route.get('/api/result/presenceCounter', 'ResultController.presenceCounter')
+}).middleware(['auth'])

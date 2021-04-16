@@ -19,8 +19,8 @@ let sensorSchema = mongoose.Schema({
   timestamps: true
 })
 
-sensorSchema.set('autoIndex', false)
 // falta hacer unique pero con user|id && user|name && user|pin
+sensorSchema.set('autoIndex', false)
 sensorSchema.index({ name:1 , user_id:1 }, {unique: true})
 
 sensorSchema.plugin(mongooseLeanGetters, mongooseAutoPopulate)

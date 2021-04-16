@@ -47,17 +47,21 @@ class UserController {
     async update({request, response, auth}){
         const session = await auth.getUser()
 
+        const name = request.input('name')
+        const last_name = request.input('last_name')
         const cel = request.input('cel')
         const age = request.input('age')
         const email = request.input('email')
-        const password = request.input('password')
+        // const password = request.input('password')
 
         const user = await User.find(session.id)
         
+        user.name = name
+        user.last_name = last_name
         user.cel = cel
         user.age = age
         user.email = email
-        user.password = password
+        // user.password = password
 
         await user.save()
         
