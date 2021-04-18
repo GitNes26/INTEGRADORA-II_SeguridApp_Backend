@@ -1,5 +1,7 @@
 'use strict'
 
+const ResultController = require("../app/Controllers/Ws/ResultController")
+
 /*
 |--------------------------------------------------------------------------
 | Websocket
@@ -15,6 +17,7 @@
 
 const Ws = use('Ws')
 
-// Ws.channel('chat', ({ socket }) => {
-//   console.log('user joined with %s socket id', socket.id)
-// })
+Ws.channel('tempData', 'ResultController')
+Ws.channel('humData','ResultController')
+Ws.channel('pirData','ResultController')
+Ws.channel('ultraData','ResultController')
