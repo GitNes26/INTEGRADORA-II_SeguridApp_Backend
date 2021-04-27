@@ -8,19 +8,19 @@ class SensorController {
         // const user = user
 
         const newSensor = 
-            {'user_id':user.id, 'name' : 'Temp&Hum', 'description' : 'Sensor que captura la temperatura y el porcentaje de humedad conectado al pin 1.'}
+            {'user_id':user.id, 'name' : 'Temperatura', 'description' : 'Sensor que captura la temperatura.'}
         const sensor = new Sensor(newSensor)
         await sensor.save()
         const newSensor2 = 
-            {'user_id':user.id, 'name' : 'Movimiento', 'description' : 'Sensor PIR, captura si hay movimiento conectado al pin 2.'}
+            {'user_id':user.id, 'name' : 'Humedad', 'description' : 'Sensor que captura el porcentaje de humedad.'}            
         const sensor2 = new Sensor(newSensor2)
         await sensor2.save()
         const newSensor3 = 
-            {'user_id':user.id, 'name' : 'Distancia', 'description' : 'Sensor Ultrasonico, indica la distancia conectado al pin 3 y 4.'}
+            {'user_id':user.id, 'name' : 'Distancia', 'description' : 'Sensor Ultrasonico, indica la distancia.'}
         const sensor3 = new Sensor(newSensor3)
         await sensor3.save()
         const newSensor4 = 
-            {'user_id':user.id, 'name' : 'LED', 'description' : 'Led RGB para indicar si hay movimiento conectado al pin 5.'}            
+            {'user_id':user.id, 'name' : 'Movimiento', 'description' : 'Sensor PIR, captura si hay movimiento, acompañado de un LED.'}
         const sensor4 = new Sensor(newSensor4)
         await sensor4.save()
 
