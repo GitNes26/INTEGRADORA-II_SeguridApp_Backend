@@ -13,11 +13,11 @@ class UserController {
             // console.log(user);
             
         const newSensor = 
-            {'user_id':user.id, 'name' : 'TempHum', 'description' : 'Sensor que captura la temperatura y el porcentaje de humedad.'}
+            {'user_id':user.id, 'name' : 'Temperatura', 'description' : 'Sensor que captura la temperatura.'}
         const sensor = new Sensor(newSensor)
         await sensor.save()
         const newSensor2 = 
-            {'user_id':user.id, 'name' : 'Movimiento', 'description' : 'Sensor PIR, captura si hay movimiento.'}
+            {'user_id':user.id, 'name' : 'Humedad', 'description' : 'Sensor que captura el porcentaje de humedad.'}            
         const sensor2 = new Sensor(newSensor2)
         await sensor2.save()
         const newSensor3 = 
@@ -25,7 +25,7 @@ class UserController {
         const sensor3 = new Sensor(newSensor3)
         await sensor3.save()
         const newSensor4 = 
-            {'user_id':user.id, 'name' : 'LED', 'description' : 'Led RGB para indicar si hay movimiento.'}            
+            {'user_id':user.id, 'name' : 'Movimiento', 'description' : 'Sensor PIR, captura si hay movimiento, acompañado de un LED.'}
         const sensor4 = new Sensor(newSensor4)
         await sensor4.save()
 
