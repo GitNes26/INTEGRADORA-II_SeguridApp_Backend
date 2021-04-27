@@ -54,7 +54,7 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Temp&Hum' }
+                $match: { 'sensor.user_id': user.id, 'sensor.name':'TempHum' }
             }
         ]).sort({data: -1}).limit(1);
         return response.status(200).json(tempMax)
@@ -70,7 +70,7 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Temp&Hum' }
+                $match: { 'sensor.user_id': user.id, 'sensor.name':'TempHum' }
             }
         ]).sort({data: 1}).limit(1);
         return response.status(200).json(tempMin)

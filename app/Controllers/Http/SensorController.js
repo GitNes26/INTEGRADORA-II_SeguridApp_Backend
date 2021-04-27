@@ -42,7 +42,12 @@ class SensorController {
         await Sensor.deleteMany({user_id:user.id})
 
         return response.json({message: "los sensores del usuario "+user.name+" fueron eliminados"})
-        
+    }
+
+    async showSensor({ response, auth, params:{name}}) {
+        const user = await auth.getUser()
+        const sensor = await Sensor.findOne({user_id:user.id, name:name}).lean()
+        return response.status(200).json(sensor)
     }
 }
 

@@ -13,7 +13,7 @@ class UserController {
             // console.log(user);
             
         const newSensor = 
-            {'user_id':user.id, 'name' : 'Temp&Hum', 'description' : 'Sensor que captura la temperatura y el porcentaje de humedad.'}
+            {'user_id':user.id, 'name' : 'TempHum', 'description' : 'Sensor que captura la temperatura y el porcentaje de humedad.'}
         const sensor = new Sensor(newSensor)
         await sensor.save()
         const newSensor2 = 
@@ -29,7 +29,7 @@ class UserController {
         const sensor4 = new Sensor(newSensor4)
         await sensor4.save()
 
-        const sensors = [sensor,sensor2,sensor3,sensor4]
+        // const sensors = [sensor,sensor2,sensor3,sensor4]
         // console.log(sensors);
 
         return response.created({
