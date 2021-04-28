@@ -54,9 +54,9 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Temperatura' }
+                $match: { 'sensor.name':'Temperatura' }
             }
-        ]).sort({data: 1}).limit(1);
+        ]).sort({data: -1}).limit(1);
         return response.status(200).json(tempMax[0])
     }
 
@@ -70,9 +70,9 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Temperatura' }
+                $match: { 'sensor.name':'Temperatura' }
             }
-        ]).sort({data: -1}).limit(1);
+        ]).sort({data: 1}).limit(1);
         return response.status(200).json(tempMin[0])
     }
 
@@ -86,9 +86,9 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Humedad' }
+                $match: { 'sensor.name':'Humedad' }
             }
-        ]).sort({data: 1}).limit(1);
+        ]).sort({data: -1}).limit(1);
         return response.status(200).json(humMax[0])
     }
 
@@ -102,9 +102,9 @@ class ResultController {
             }, {
                 $unwind: '$sensor'
             }, {
-                $match: { 'sensor.user_id': user.id, 'sensor.name':'Humedad' }
+                $match: { 'sensor.name':'Humedad' }
             }
-        ]).sort({data: -1}).limit(1);
+        ]).sort({data: 1}).limit(1);
         return response.status(200).json(humMin[0])
     }
 
@@ -118,12 +118,14 @@ class ResultController {
             }, {
                 $unwind: '$sensor' 
             }, {
-                $match: { 'sensor.user_id':user.id, 'sensor.name':'Movimiento', 'data':true }
+                $match: { 'sensor.name':'Movimiento', 'data':true }
             }, {
                 $count: 'presencias'
             }
         ]);
-        return response.status(200).json(counter[0])
+        const counterString = counter[0]["presencias"].toString()
+        console.log(counterString);
+        return response.status(200).json({data:counterString, message:"contador de presencias"})
     }
 
     async deleteByUser({response, auth}) {
